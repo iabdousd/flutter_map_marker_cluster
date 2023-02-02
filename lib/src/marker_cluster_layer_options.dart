@@ -156,6 +156,9 @@ class MarkerClusterLayerOptions {
   /// If set, at this zoom level and below, markers will not be clustered. This defaults to 20 (max zoom)
   final int disableClusteringAtZoom;
 
+  /// If set, circle and spiral will be disabled if length of markers is more or equals to the provided value
+  final int? disableCircleSpiralAt;
+
   /// Increase to increase the distance away that spiral spiderfied markers appear from the center
   final int spiderfySpiralDistanceMultiplier;
 
@@ -208,6 +211,7 @@ class MarkerClusterLayerOptions {
     this.spiderfyCircleRadius = 40,
     this.spiderfySpiralDistanceMultiplier = 1,
     this.circleSpiralSwitchover = 9,
+    this.disableCircleSpiralAt,
     this.spiderfyShapePositions,
     this.spiderfyCluster = true,
     this.polygonOptions = const PolygonOptions(),

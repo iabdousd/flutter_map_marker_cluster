@@ -334,7 +334,10 @@ class _MarkerClusterLayerState extends State<MarkerClusterLayer>
         _mapCalculator.clusterPoint(clusterNode.parent!) !=
             _mapCalculator.clusterPoint(clusterNode)) {
       return _buildClusterOpeningLayer(clusterNode);
-    } else if (_clusterManager.isSpiderfyCluster(clusterNode)) {
+    } else if ((widget.options.disableCircleSpiralAt == null ||
+            clusterNode.children.length <
+                widget.options.disableCircleSpiralAt!) &&
+        _clusterManager.isSpiderfyCluster(clusterNode)) {
       layers.addAll(_buildSpiderfyCluster(clusterNode, _currentZoom));
     } else {
       layers.add(
