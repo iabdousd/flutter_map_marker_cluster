@@ -507,9 +507,8 @@ class _MarkerClusterLayerState extends State<MarkerClusterLayer>
       // This is the performance critical hot path recursed on every map event!
 
       // Cull markers/clusters that are not on screen.
-      if (!widget.map.pixelBounds.containsPartialBounds(
-        layer.pixelBounds(widget.map) as Bounds<double>,
-      )) {
+      final layerPixelBounds = layer.pixelBounds(widget.map);
+      if (!widget.map.pixelBounds.containsPartialBounds(layerPixelBounds)) {
         return;
       }
 
