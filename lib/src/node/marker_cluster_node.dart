@@ -137,8 +137,8 @@ class MarkerClusterNode extends MarkerOrClusterNode {
     final topPortion = anchor.top;
 
     final ne =
-        map.project(bounds.northEast!) + CustomPoint(rightPortion, -topPortion);
-    final sw = map.project(bounds.southWest!) +
+        map.project(bounds.northEast) + CustomPoint(rightPortion, -topPortion);
+    final sw = map.project(bounds.southWest) +
         CustomPoint(-leftPortion, bottomPortion);
 
     return Bounds(ne, sw);

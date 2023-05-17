@@ -507,8 +507,9 @@ class _MarkerClusterLayerState extends State<MarkerClusterLayer>
       // This is the performance critical hot path recursed on every map event!
 
       // Cull markers/clusters that are not on screen.
-      if (!widget.map.pixelBounds
-          .containsPartialBounds(layer.pixelBounds(widget.map))) {
+      if (!widget.map.pixelBounds.containsPartialBounds(
+        layer.pixelBounds(widget.map) as Bounds<double>,
+      )) {
         return;
       }
 
@@ -711,7 +712,7 @@ class _MarkerClusterLayerState extends State<MarkerClusterLayer>
 LatLngBounds _extendBounds(LatLngBounds bounds, double stickonFactor) {
   final sw = bounds.southWest;
   final ne = bounds.northEast;
-  final height = (sw!.latitude - ne!.latitude).abs() * stickonFactor;
+  final height = (sw.latitude - ne.latitude).abs() * stickonFactor;
   final width = (sw.longitude - ne.longitude).abs() * stickonFactor;
 
   // Clamp rather than wrap around. This function is used in the context of
