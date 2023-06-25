@@ -187,9 +187,6 @@ class MarkerClusterLayerOptions {
   /// Function to call when a cluster Marker is tapped
   final void Function(MarkerClusterNode)? onClusterTap;
 
-  /// Popup's options that show when tapping markers or via the PopupController.
-  final PopupOptions? popupOptions;
-
   MarkerClusterLayerOptions({
     required this.builder,
     this.rotate,
@@ -217,6 +214,5 @@ class MarkerClusterLayerOptions {
     this.onMarkerHoverExit,
     this.onClusterTap,
     this.onMarkersClustered,
-    this.popupOptions,
   });
 }
