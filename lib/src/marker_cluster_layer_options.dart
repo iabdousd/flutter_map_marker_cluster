@@ -46,8 +46,6 @@ class PopupOptions {
   /// and hide the popup.
   final PopupController popupController;
 
-  final PopupState popupState;
-
   /// Controls the position of the popup relative to the marker or popup.
   final PopupSnap popupSnap;
 
@@ -76,7 +74,6 @@ class PopupOptions {
 
   PopupOptions({
     required this.popupBuilder,
-    required this.popupState,
     this.popupSnap = PopupSnap.markerTop,
     PopupController? popupController,
     this.popupAnimation,
@@ -130,7 +127,7 @@ class MarkerClusterLayerOptions {
   final Size Function(List<Marker>)? computeSize;
 
   /// Cluster anchor
-  final AnchorPos? anchor;
+  final AnchorPos? anchorPos;
 
   /// A cluster will cover at most this many pixels from its center
   final int maxClusterRadius;
@@ -187,6 +184,9 @@ class MarkerClusterLayerOptions {
   /// Function to call when a cluster Marker is tapped
   final void Function(MarkerClusterNode)? onClusterTap;
 
+  /// Popup's options that show when tapping markers or via the PopupController.
+  final PopupOptions? popupOptions;
+
   MarkerClusterLayerOptions({
     required this.builder,
     this.rotate,
@@ -195,7 +195,7 @@ class MarkerClusterLayerOptions {
     this.markers = const [],
     this.size = const Size(30, 30),
     this.computeSize,
-    this.anchor,
+    this.anchorPos,
     this.maxClusterRadius = 80,
     this.disableClusteringAtZoom = 20,
     this.animationsOptions = const AnimationsOptions(),
@@ -214,5 +214,6 @@ class MarkerClusterLayerOptions {
     this.onMarkerHoverExit,
     this.onClusterTap,
     this.onMarkersClustered,
+    this.popupOptions,
   });
 }

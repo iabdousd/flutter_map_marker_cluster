@@ -129,12 +129,8 @@ class MarkerClusterNode extends MarkerOrClusterNode {
   Bounds<double> pixelBounds(FlutterMapState map) {
     final width = size().width;
     final height = size().height;
-
-    if (anchorPos == null) {
-      return Bounds(const CustomPoint(0, 0), const CustomPoint(0, 0));
-    }
-
-    final anchor = Anchor.fromPos(anchorPos!, width, height);
+    final anchor = Anchor.fromPos(
+        anchorPos ?? AnchorPos.align(AnchorAlign.center), width, height);
 
     final rightPortion = width - anchor.left;
     final leftPortion = anchor.left;

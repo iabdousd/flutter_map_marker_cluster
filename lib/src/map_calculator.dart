@@ -8,8 +8,8 @@ class MapCalculator {
 
   CustomPoint<num> getPixelFromPoint(LatLng point) {
     final pos = mapState.project(point);
-    final scale = mapState.getZoomScale(mapState.zoom, mapState.zoom);
-    return pos.scaleBy(CustomPoint(scale, scale)) - mapState.pixelOrigin;
+    return pos * mapState.getZoomScale(mapState.zoom, mapState.zoom) -
+        mapState.pixelOrigin;
   }
 
   CustomPoint project(LatLng latLng, {double? zoom}) =>

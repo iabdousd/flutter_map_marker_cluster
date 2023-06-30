@@ -40,12 +40,12 @@ abstract class Translate {
     LatLng? customPoint,
   }) {
     final pos = mapCalculator.getPixelFromPoint(customPoint ?? marker.point);
-    return util.removeAnchor(
-      pos,
+    final anchor = Anchor.fromPos(
+      marker.anchorPos ?? AnchorPos.align(AnchorAlign.center),
       marker.width,
       marker.height,
-      marker.anchorPos?.anchor,
     );
+    return util.removeAnchor(pos, marker.width, marker.height, anchor);
   }
 
   static Point<double> _getClusterPixel(
@@ -57,14 +57,11 @@ abstract class Translate {
         .getPixelFromPoint(customPoint ?? clusterNode.bounds.center);
 
     final calculatedSize = clusterNode.size();
-
-    final anchor = clusterNode.anchorPos != null
-        ? Anchor.fromPos(
-            clusterNode.anchorPos!,
-            calculatedSize.width,
-            calculatedSize.height,
-          )
-        : null;
+    final anchor = Anchor.fromPos(
+      clusterNode.anchorPos ?? AnchorPos.align(AnchorAlign.center),
+      calculatedSize.width,
+      calculatedSize.height,
+    );
 
     return util.removeAnchor(
       pos,
@@ -140,7 +137,11 @@ class AnimatedTranslate extends Translate {
           point,
           marker.width,
           marker.height,
-          marker.anchorPos?.anchor,
+          Anchor.fromPos(
+            marker.anchorPos ?? AnchorPos.align(AnchorAlign.center),
+            marker.width,
+            marker.height,
+          ),
         ) {
     _tween = Tween<Point<double>>(
       begin: Point(position.x, position.y),
